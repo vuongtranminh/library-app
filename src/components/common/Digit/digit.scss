@@ -1,0 +1,53 @@
+$green: #a8ff78;
+
+.digit {
+    display: inline-block;
+    position: relative;
+
+    &:nth-child(3),
+    &:nth-child(6) {
+        margin-right: 20px;
+    }
+
+    input {
+        border-radius: 5px;
+        border: none;
+        font-size: 0em;
+        height: 80px;
+        line-height: 80px;
+        margin-right: 10px;
+        outline: none;
+        text-align: center;
+        width: 60px;
+
+        &:focus {
+            box-shadow: 0px 0px 20px 4px rgba(black, 0.25);
+
+            + .underline {
+                display: block;
+            }
+        }
+    }
+
+    .underline {
+        background-color: $green;
+        bottom: 15px;
+        display: none;
+        height: 2px;
+        left: 15px;
+        position: absolute;
+        width: 30px;
+    }
+
+    .digit-overlay {
+        font-size: 2.5em;
+        height: 80px;
+        line-height: 80px;
+        pointer-events: none;
+        position: absolute;
+        text-align: center;
+        transition: all 1s;
+        width: 60px;
+        z-index: 2;
+    }
+}

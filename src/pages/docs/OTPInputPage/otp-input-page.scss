@@ -1,0 +1,10 @@
+$green: #a8ff78;
+$aqua: #78ffd6;
+
+.otp-input {
+    width: 100%;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(to right, $green, $aqua);
+}
