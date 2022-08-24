@@ -1,6 +1,6 @@
 $green: #a8ff78;
 
-.digit {
+.lt-digit {
     display: inline-block;
     position: relative;
 
@@ -23,13 +23,13 @@ $green: #a8ff78;
         &:focus {
             box-shadow: 0px 0px 20px 4px rgba(black, 0.25);
 
-            + .underline {
+            + .lt-digit__underline {
                 display: block;
             }
         }
     }
 
-    .underline {
+    &__underline {
         background-color: $green;
         bottom: 15px;
         display: none;
@@ -39,7 +39,7 @@ $green: #a8ff78;
         width: 30px;
     }
 
-    .digit-overlay {
+    &__overlay {
         font-size: 2.5em;
         height: 80px;
         line-height: 80px;

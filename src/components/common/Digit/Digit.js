@@ -4,10 +4,14 @@ import DigitOverlay from './DigitOverlay';
 import './digit.scss';
 
 const Digit = (props) => {
+
     const [value, setValue] = useState('');
 
     const focus = (index) => {
-        document.getElementById(`digit-input-${index}`).focus();
+        const digitNode = document.getElementById(`lt-digit-input-${index}`);
+        if (digitNode) {
+            digitNode.focus()
+        }
     };
 
     useEffect(() => {
@@ -24,12 +28,12 @@ const Digit = (props) => {
     }, []);
 
     const focusNext = () => {
-        const nextIndex = Math.min(props.index + 1, 9);
+        const nextIndex = props.index + 1
         focus(nextIndex);
     };
 
     const focusPrev = () => {
-        const prevIndex = Math.max(0, props.index - 1);
+        const prevIndex = props.index - 1
         focus(prevIndex);
     };
 
@@ -43,17 +47,17 @@ const Digit = (props) => {
         }
     };
 
-    const id = `digit-input-${props.index}`;
-
     return (
-        <div className="digit">
-            <input id={id} type="text" value={value} onKeyDown={handleOnKeyDown} onChange={() => {}} />
-            <div className="underline" />
+        <div className="lt-digit">
+            <input id={`lt-digit-input-${props.index}`} type="text" value={value} onKeyDown={handleOnKeyDown} onChange={() => { }} />
+            <div className="lt-digit__underline" />
             <DigitOverlay value={value} />
         </div>
     );
 };
 
-Digit.propTypes = {};
+Digit.propTypes = {
+    index: PropTypes.number.isRequired,
+};
 
 export default Digit;

@@ -11,19 +11,19 @@ const DigitOverlay = (props) => {
 
     const [position, setPosition] = useState(() => {
         return {
-            left: getRand(0, 150),
-            top: getRand(0, 150),
+            left: getRand(0, 100),
+            top: getRand(0, 100),
         };
     });
 
     useEffect(() => {
-        if (props.value !== '') {
+        if (props.value) {
             setPosition({ left: 0, top: 0 });
             setValue(props.value);
         } else {
-            setPosition({ left: getRand(0, 150), top: getRand(0, 150) });
+            setPosition({ left: getRand(0, 100), top: getRand(0, 100) });
         }
-    }, []);
+    }, [props.value]);
 
     const getStyles = () => {
         const styles = {
@@ -42,12 +42,14 @@ const DigitOverlay = (props) => {
     };
 
     return (
-        <h1 className="digit-overlay" style={getStyles()}>
+        <h1 className="lt-digit__overlay" style={getStyles()}>
             {value}
         </h1>
     );
 };
 
-DigitOverlay.propTypes = {};
+DigitOverlay.propTypes = {
+    value: PropTypes.string.isRequired,
+};
 
 export default DigitOverlay;
