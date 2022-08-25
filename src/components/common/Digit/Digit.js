@@ -28,13 +28,11 @@ const Digit = (props) => {
     }, []);
 
     const focusNext = () => {
-        const nextIndex = props.index + 1
-        focus(nextIndex);
+        focus(props.index + 1);
     };
 
     const focusPrev = () => {
-        const prevIndex = props.index - 1
-        focus(prevIndex);
+        focus(props.index - 1);
     };
 
     const handleOnKeyDown = (e) => {
@@ -47,9 +45,13 @@ const Digit = (props) => {
         }
     };
 
+    const handleChange = (e) => {
+        console.log(e.target.value)
+    }
+
     return (
         <div className="lt-digit">
-            <input id={`lt-digit-input-${props.index}`} type="text" value={value} onKeyDown={handleOnKeyDown} onChange={() => { }} />
+            <input id={`lt-digit-input-${props.index}`} type="text" value={value} onKeyDown={handleOnKeyDown} onChange={handleChange} />
             <div className="lt-digit__underline" />
             <DigitOverlay value={value} />
         </div>
