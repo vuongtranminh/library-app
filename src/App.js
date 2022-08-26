@@ -10,6 +10,7 @@ import ButtonPage from './pages/docs/ButtonPage';
 import TextFieldPage from './pages/docs/TextFieldPage';
 import './App.scss';
 import OTPInputPage from './pages/docs/OTPInputPage';
+import SelectPage from './pages/docs/SelectPage/SelectPage';
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
                     <Route path="/docs/button" element={<ButtonPage />} />
                     <Route path="/docs/textfield" element={<TextFieldPage />} />
                     <Route path="/docs/otpinput" element={<OTPInputPage />} />
+                    <Route path="/docs/select" element={<SelectPage />} />
                 </Route>
                 <Route path="/" element={<AppLayout />}>
                     <Route index element={<Home />} />
