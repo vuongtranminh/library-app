@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import './select.scss';
-import { typeOf } from '~/utils';
+import { isDeepEqual } from '~/utils';
 
 const Select = (props) => {
     const { items, value, itemText, onChooseOption } = props;
@@ -10,9 +10,9 @@ const Select = (props) => {
     const [isOpenOptions, setIsOpenOptions] = useState(false);
     const [cursor, setCursor] = useState(0);
 
-    const inputRef = useRef()
-    const optionsRef = useRef()
-    const optionBg = useRef()
+    const inputRef = useRef(null)
+    const optionsRef = useRef(null)
+    const optionBg = useRef(null)
 
     const handleOpenOptions = () => {
         setIsOpenOptions(true)
@@ -31,15 +31,18 @@ const Select = (props) => {
 
     // click outside result close
     useEffect(() => {
-        window.addEventListener('mousedown', handleClickOutside);
-
+        document.addEventListener('mousedown', handleClickOutside);
+        document.addEventListener("touchstart", handleClickOutside);
         return () => {
-            window.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('touchstart', handleClickOutside);
         };
     }, []);
 
     const handleClickOutside = (e) => {
-        if (optionsRef.current && !optionsRef.current.contains(e.target) && !inputRef.current.contains(e.target)) {
+        const onClickOutSideInput = inputRef.current && !inputRef.current.contains(e.target)
+        const onClickOutSideOptions = optionsRef.current && !optionsRef.current.contains(e.target)
+        if (onClickOutSideInput && onClickOutSideOptions) {
             handleCloseOptions();
         }
     };
@@ -53,7 +56,6 @@ const Select = (props) => {
                 setCursor((prevCursor) => prevCursor - 1 > 0 ? prevCursor - 1 : 0)
                 break;
             case 'Enter':
-                console.log('cursor: ' + cursor)
                 cursor > -1 && handleChooseOption(items[cursor])
                 break;
             default:
@@ -97,6 +99,21 @@ const Select = (props) => {
         }
     }
 
+    const options = useMemo(() => {
+        return items.map((item, index) => (
+            <div
+                className={cx('lt-select__option', { 'lt-select__option--active': isDeepEqual(item, value) })}
+                key={index}
+                onClick={() => handleChooseOption(item)}
+            >
+                <div className="lt-select__option__overlay lt-select__option__overlay--top"></div>
+                <div className="lt-select__option__overlay lt-select__option__overlay--bottom"></div>
+                <i className="bx bxl-visual-studio"></i>
+                <div className="lt-select__option__label">{itemText ? item[itemText] : item}</div>
+            </div>
+        ))
+    }, [value])
+
     return (
         <div className="lt-select">
             <div className="lt-select-box">
@@ -111,18 +128,7 @@ const Select = (props) => {
                     </div>
                 </div>
                 <div className={cx('lt-select__options', { 'lt-select__options--open': isOpenOptions })} ref={optionsRef}>
-                    {items.map((item, index) => (
-                        <div
-                            className={cx('lt-select__option', { 'lt-select__option--active': value === item })}
-                            key={index}
-                            onClick={() => handleChooseOption(item)}
-                        >
-                            <div className="lt-select__option__overlay lt-select__option__overlay--top"></div>
-                            <div className="lt-select__option__overlay lt-select__option__overlay--bottom"></div>
-                            <i className="bx bxl-visual-studio"></i>
-                            <div className="lt-select__option__label">{item}</div>
-                        </div>
-                    ))}
+                    {options.map((option => option))}
                     <div className="lt-select__option-bg" ref={optionBg} style={style}></div>
                 </div>
             </div>

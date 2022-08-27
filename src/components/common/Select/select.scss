@@ -166,6 +166,18 @@
             }
         }
     }
+
+    &__option-bg {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        height: 40px;
+        transition: 0.3s ease all;
+        z-index: 1;
+
+        background-color: #ebf3f3;
+    }
 }
 
 @keyframes moveup {
@@ -239,15 +251,3 @@
 // .option .fa-free-code-camp {
 //     color: #006400;
 // }
-
-.lt-select__option-bg {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    height: 40px;
-    transition: 0.3s ease all;
-    z-index: 1;
-
-    background-color: #0057ff;
-}
