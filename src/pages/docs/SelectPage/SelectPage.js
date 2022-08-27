@@ -21,6 +21,8 @@ const SelectPage = () => {
                         <div className="select">
                             <Select items={items} value={value} onChooseOption={handleChooseOption} />
                         </div>
+
+                        <p>Your Choose: {value}</p>
                     </SectionBody>
                 </Section>
             </DocumentBody>
