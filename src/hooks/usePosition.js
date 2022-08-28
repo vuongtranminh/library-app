@@ -11,7 +11,6 @@ const usePosition = (ref) => {
     }, [])
 
     const getPosition = () => {
-        console.dir(ref.current)
         if (!ref.current) return
 
         const x = ref.current.offsetLeft;

@@ -1,12 +1,7 @@
 .lt-select {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
+    position: relative;
     width: 300px;
     height: 42px;
-    margin: 100px auto 0 auto;
-    z-index: 1;
 
     &__input {
         position: absolute;
@@ -64,6 +59,7 @@
 
     &__options {
         position: absolute;
+        z-index: 1000;
         top: 42px;
         right: 0;
         left: 0;

@@ -55,7 +55,7 @@ const SelectPage = () => {
                     <SectionTitle>Select</SectionTitle>
                     <SectionBody>
                         <div className="select">
-                            {/* <Select items={items} value={value} onChooseOption={handleChooseOption} /> */}
+                            <Select items={items} value={value} onChooseOption={handleChooseOption} />
                         </div>
 
                         <p>Your Choose: {value}</p>

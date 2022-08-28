@@ -15,8 +15,10 @@ const Select = ({ items, value, itemText, onChooseOption }) => {
     const inputRef = useRef(null)
     const optionsRef = useRef(null)
 
-    const [x, y] = usePosition(selectRef)
-    console.log(x, y)
+    console.log('isOpen: ' + isOpenOptions)
+
+    // const [x, y] = usePosition(selectRef)
+    // console.log(x, y)
 
     const handleOpenOptions = () => {
         setIsOpenOptions(true)
