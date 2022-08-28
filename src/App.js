@@ -11,6 +11,7 @@ import TextFieldPage from './pages/docs/TextFieldPage';
 import './App.scss';
 import OTPInputPage from './pages/docs/OTPInputPage';
 import SelectPage from './pages/docs/SelectPage/SelectPage';
+// import Options from './components/common/Select/Options';
 
 function App() {
     return (
@@ -32,6 +33,7 @@ function App() {
                     <Route path="boards/:boardId" element={<Board />} />
                 </Route>
             </Routes>
+            {/* <Options /> */}
         </Router>
     );
 }

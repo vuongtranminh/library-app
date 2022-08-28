@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './error-boundary.scss'
 
 export default class ErrorBoundary extends Component {
     constructor(props) {
@@ -23,9 +24,9 @@ export default class ErrorBoundary extends Component {
         if (this.state.hasError) {
             // You can render any custom fallback UI
             return (
-                <div style={{ color: 'red', textAlign: 'center' }}>
-                    <h2>🙁!!! Something went wrong.</h2>
-                    <h3>Please check me again!!!</h3>
+                <div className='lt-error-boundary'>
+                    <h2 className='lt-error-boundary__title'>🙁<span>!!! Something went wrong.</span></h2>
+                    <h3 className='lt-error-boundary__message'>Please check me again!!!</h3>
                 </div>
             );
         }

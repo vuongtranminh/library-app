@@ -3,16 +3,20 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import './select.scss';
 import { isDeepEqual } from '~/utils';
+import withErrorBoundary from '~/HOC/withErrorBoundary';
+import { usePosition } from '~/hooks';
 
-const Select = (props) => {
-    const { items, value, itemText, onChooseOption } = props;
+const Select = ({ items, value, itemText, onChooseOption }) => {
 
     const [isOpenOptions, setIsOpenOptions] = useState(false);
     const [cursor, setCursor] = useState(0);
 
+    const selectRef = useRef(null)
     const inputRef = useRef(null)
     const optionsRef = useRef(null)
-    const optionBg = useRef(null)
+
+    const [x, y] = usePosition(selectRef)
+    console.log(x, y)
 
     const handleOpenOptions = () => {
         setIsOpenOptions(true)
@@ -114,13 +118,17 @@ const Select = (props) => {
         ))
     }, [value])
 
+    const selected = useMemo(() => {
+        return itemText ? value[itemText] : value
+    }, [value])
+
     return (
-        <div className="lt-select">
+        <div className="lt-select" ref={selectRef}>
             <div className="lt-select-box">
                 <input type="text" readOnly className='lt-select__input' ref={inputRef} onKeyDown={handleKeyDown} onClick={handleToggleOptions} />
                 <div className="lt-select__selected">
                     <div className="lt-select__selected__value">
-                        <span>{value}</span>
+                        <span>{selected}</span>
                     </div>
                     <div className={cx('lt-select__chevrons', { 'lt-select__chevrons--active': isOpenOptions })}>
                         <i className="bx bxs-chevron-up"></i>
@@ -129,13 +137,18 @@ const Select = (props) => {
                 </div>
                 <div className={cx('lt-select__options', { 'lt-select__options--open': isOpenOptions })} ref={optionsRef}>
                     {options.map((option => option))}
-                    <div className="lt-select__option-bg" ref={optionBg} style={style}></div>
+                    <div className="lt-select__option-bg" style={style}></div>
                 </div>
             </div>
         </div>
     );
 };
 
-Select.propTypes = {};
+Select.propTypes = {
+    items: PropTypes.array.isRequired,
+    value: PropTypes.any.isRequired,
+    itemText: PropTypes.string,
+    onChooseOption: PropTypes.func.isRequired,
+};
 
-export default Select;
+export default withErrorBoundary(Select);

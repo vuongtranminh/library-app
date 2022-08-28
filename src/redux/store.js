@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
+import optionsRootSlice from './features/optionsRootSlice';
 import themeSlice from './features/themeSlice';
 import userSlice from './features/userSlice';
 
@@ -16,6 +17,7 @@ const store = configureStore({
     reducer: {
         themeMode: themeSlice,
         user: userSlice,
+        optionsRoot: optionsRootSlice,
     },
     middleware,
 });

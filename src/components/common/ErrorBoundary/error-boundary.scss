@@ -1,0 +1,33 @@
+.lt-error-boundary {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    border: 1px solid #d31027;
+
+    &__title {
+        span {
+            background: #d31027; /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #ea384d, #d31027); /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(
+                to right,
+                #ea384d,
+                #d31027
+            ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+    }
+
+    &__message {
+        background: #f7971e; /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #ffd200, #f7971e); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(
+            to right,
+            #ffd200,
+            #f7971e
+        ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+}
