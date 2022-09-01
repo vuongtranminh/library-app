@@ -1,10 +1,10 @@
-import React, { forwardRef, useImperativeHandle, useState } from 'react';
+import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import './input.scss';
 import { isString } from '~/utils';
 
-const Input = forwardRef((props, ref) => {
+const Input = (props, ref) => {
     const {
         label,
         rules,
@@ -18,6 +18,8 @@ const Input = forwardRef((props, ref) => {
         hideDetail,
         ...passProps
     } = props;
+
+    const inputRef = useRef(null)
 
     const [error, setError] = useState('');
 
@@ -41,15 +43,13 @@ const Input = forwardRef((props, ref) => {
         return true;
     };
 
-    useImperativeHandle(ref, () => {
-        return {
-            validate: () => validate(),
-            forcus: () => handleForcus(),
-        };
-    });
+    useImperativeHandle(ref, () => ({
+        validate: () => validate(),
+        forcus: () => handleForcus(),
+    }));
 
     const handleForcus = () => {
-        ref.current.forcus();
+        inputRef.current.focus();
     };
 
     const handleBlur = () => {
@@ -65,6 +65,7 @@ const Input = forwardRef((props, ref) => {
             <div className={classes}>
                 <div className="lt-textfield__inner">
                     <input
+                        ref={inputRef}
                         className={`lt-textfield__input lt-textfield__input--border lt-textfield__input--border-${effect}`}
                         type="text"
                         placeholder=" "
@@ -86,6 +87,7 @@ const Input = forwardRef((props, ref) => {
             <div className={classes}>
                 <div className="lt-textfield__inner">
                     <input
+                        ref={inputRef}
                         className={`lt-textfield__input lt-textfield__input--filled lt-textfield__input--filled-${effect}`}
                         type="text"
                         placeholder=" "
@@ -106,6 +108,7 @@ const Input = forwardRef((props, ref) => {
             <div className="lt-textfield">
                 <div className="lt-textfield__inner">
                     <input
+                        ref={inputRef}
                         className={`lt-textfield__input lt-textfield__input--regular lt-textfield__input--regular-${effect}`}
                         type="text"
                         placeholder=" "
@@ -121,8 +124,8 @@ const Input = forwardRef((props, ref) => {
             </div>
         );
     }
-});
+};
 
 Input.propTypes = {};
 
-export default Input;
+export default forwardRef(Input);
