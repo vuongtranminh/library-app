@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import './video.scss'
 import videos from '~/assets/videos'
@@ -10,6 +10,12 @@ const Video = props => {
 
     const playerRef = useRef(null)
 
+    const [isPlay, setIsPlay] = useState(false)
+
+    const handleTogglePlay = () => {
+        setIsPlay(!isPlay)
+    }
+
     const sources = [{
         src: videos.video,
         type: VIDEO_TYPE.mp4,
@@ -18,7 +24,7 @@ const Video = props => {
     return (
         <div className='lt-video'>
             <Player ref={playerRef} sources={sources} />
-            <Controls />
+            <Controls playerRef={playerRef} isPlay={isPlay} onTogglePlay={handleTogglePlay} />
         </div>
     )
 }

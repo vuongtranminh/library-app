@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './tooltip.scss'
 
 const Tooltip = (props) => {
     const { tooltip, flow, children, className } = props; // flow: left, up, down, right : default: up

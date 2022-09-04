@@ -4,7 +4,7 @@ import cx from 'classnames';
 import './input.scss';
 import { isString } from '~/utils';
 
-const Input = (props, ref) => {
+const Input = forwardRef((props, ref) => {
     const {
         label,
         rules,
@@ -124,8 +124,8 @@ const Input = (props, ref) => {
             </div>
         );
     }
-};
+});
 
 Input.propTypes = {};
 
-export default forwardRef(Input);
+export default Input;

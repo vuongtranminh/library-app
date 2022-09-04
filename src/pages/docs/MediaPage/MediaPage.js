@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import './media-page.scss'
 import Document, { DocumentBody, DocumentTitle } from '~/components/common/Document'
 import Section, { SectionBody, SectionTitle } from '~/components/common/Section'
-import Video from '~/components/common/Video'
+import { Video } from '~/components/common/Video'
 
 const MediaPage = props => {
     return <Document>
