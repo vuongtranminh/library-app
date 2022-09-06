@@ -10,13 +10,13 @@ const AppLayout = () => {
 
     return (
         <div className={`layout ${theme}`}>
-            <Sidebar />
+            {/* <Sidebar /> */}
             <div className="layout__content">
-                <TopNav />
+                {/* <TopNav /> */}
                 <div className="layout__content-main">
                     <Outlet />
                 </div>
-                <Footer />
+                {/* <Footer /> */}
             </div>
         </div>
     );

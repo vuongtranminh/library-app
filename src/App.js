@@ -12,6 +12,8 @@ import './App.scss';
 import OTPInputPage from './pages/docs/OTPInputPage';
 import SelectPage from './pages/docs/SelectPage';
 import MediaPage from './pages/docs/MediaPage';
+import Test from './pages/Test';
+import RangePage from './pages/docs/RangePage';
 
 function App() {
     return (
@@ -27,9 +29,11 @@ function App() {
                     <Route path="/docs/otpinput" element={<OTPInputPage />} />
                     <Route path="/docs/select" element={<SelectPage />} />
                     <Route path="/docs/media" element={<MediaPage />} />
+                    <Route path="/docs/range" element={<RangePage />} />
                 </Route>
                 <Route path="/" element={<AppLayout />}>
                     <Route index element={<Home />} />
+                    <Route path="test" element={<Test />} />
                     <Route path="boards" element={<Board />} />
                     <Route path="boards/:boardId" element={<Board />} />
                 </Route>

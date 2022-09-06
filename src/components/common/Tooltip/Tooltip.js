@@ -1,11 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './tooltip.scss'
+import './tooltip.scss';
+import cx from 'classnames';
 
 const Tooltip = (props) => {
     const { tooltip, flow, children, className } = props; // flow: left, up, down, right : default: up
+
+    const classes = cx('lt-tooltip', {
+        [className]: className,
+    });
+
     return (
-        <span className={`lt-tooltip ${className}`} tooltip={tooltip} flow={flow}>
+        <span className={classes} tooltip={tooltip} flow={flow}>
             {children}
         </span>
     );
