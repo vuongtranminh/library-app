@@ -9,3 +9,7 @@ export const VIDEO_VOLUME = {
     low: 'low',
     high: 'high',
 };
+
+export const MAX_VOLUME = 1;
+export const HALF_VOLUME = 0.5;
+export const MIN_VOLUME = 0;
