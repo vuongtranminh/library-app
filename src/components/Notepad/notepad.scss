@@ -1,0 +1,118 @@
+.notepad {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 0;
+    overflow-y: auto;
+
+    background-color: #fff;
+    transition: width 0.3s ease;
+
+    &__container {
+        padding: 30px;
+        min-height: 100vh;
+        width: 100%;
+    }
+
+    &--open {
+        width: 70%;
+    }
+
+    &__header {
+        display: inline-flex;
+    }
+
+    &__title {
+        font-size: 3rem;
+        font-weight: 700;
+    }
+
+    &__lesson {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 30px;
+
+        background-image: radial-gradient(50% 50% at 50% 50%, rgba(160, 51, 255, 0.024) 0, rgba(160, 51, 255, 0) 50%),
+            radial-gradient(50% 50% at 50% 50%, rgba(160, 51, 255, 0.04) 0, rgba(160, 51, 255, 0) 75%),
+            radial-gradient(50% 50% at 50% 50%, rgba(160, 51, 255, 0.064) 0, rgba(160, 51, 255, 0) 100%),
+            radial-gradient(50% 50% at 50% 50%, rgba(24, 119, 242, 0.024) 0, rgba(24, 119, 242, 0) 50%),
+            radial-gradient(50% 50% at 50% 50%, rgba(24, 119, 242, 0.04) 0, rgba(24, 119, 242, 0) 75%),
+            radial-gradient(50% 50% at 50% 50%, rgba(24, 119, 242, 0.064) 0, rgba(24, 119, 242, 0) 100%),
+            radial-gradient(50% 50% at 50% 50%, rgba(255, 108, 92, 0.024) 0, rgba(255, 108, 92, 0) 50%),
+            radial-gradient(50% 50% at 50% 50%, rgba(255, 108, 92, 0.04) 0, rgba(255, 108, 92, 0) 75%),
+            radial-gradient(50% 50% at 50% 50%, rgba(255, 108, 92, 0.064) 0, rgba(255, 108, 92, 0) 100%),
+            radial-gradient(50% 50% at 50% 50%, rgba(245, 206, 51, 0.024) 0, rgba(245, 206, 51, 0) 50%),
+            radial-gradient(50% 50% at 50% 50%, rgba(245, 206, 51, 0.04) 0, rgba(245, 206, 51, 0) 75%),
+            radial-gradient(50% 50% at 50% 50%, rgba(245, 206, 51, 0.064) 0, rgba(245, 206, 51, 0) 100%),
+            radial-gradient(50% 50% at 50% 50%, rgba(37, 211, 102, 0.024) 0, rgba(37, 211, 102, 0) 50%),
+            radial-gradient(50% 50% at 50% 50%, rgba(37, 211, 102, 0.04) 0, rgba(37, 211, 102, 0) 75%),
+            radial-gradient(50% 50% at 50% 50%, rgba(37, 211, 102, 0.064) 0, rgba(37, 211, 102, 0) 100%),
+            radial-gradient(50% 50% at 50% 50%, rgba(24, 119, 242, 0.024) 0, rgba(24, 119, 242, 0) 50%),
+            radial-gradient(50% 50% at 50% 50%, rgba(24, 119, 242, 0.04) 0, rgba(24, 119, 242, 0) 75%),
+            radial-gradient(50% 50% at 50% 50%, rgba(24, 119, 242, 0.064) 0, rgba(24, 119, 242, 0) 100%);
+
+        background-size: 156.45vw 99.03vw, 156.45vw 99.03vw, 156.45vw 99.03vw, 226.86vw 145.44vw, 226.86vw 145.44vw,
+            226.86vw 145.44vw, 171.96vw 110.31vw, 171.96vw 110.31vw, 171.96vw 110.31vw, 130.29vw 83.58vw,
+            130.29vw 83.58vw, 130.29vw 83.58vw, 198vw 126.9vw, 198vw 126.9vw, 198vw 126.9vw, 300vw 192vw, 300vw 192vw,
+            300vw 192vw;
+
+        background-position: 37.97vw calc(((300vw - 100vh) / 2 - 85.77vw) * -1),
+            37.97vw calc(((300vw - 100vh) / 2 - 85.77vw) * -1), 37.97vw calc(((300vw - 100vh) / 2 - 85.77vw) * -1),
+            -100vw calc(((300vw - 100vh) / 2 - 154.56vw) * -1), -100vw calc(((300vw - 100vh) / 2 - 154.56vw) * -1),
+            -100vw calc(((300vw - 100vh) / 2 - 154.56vw) * -1), 13.34vw calc(((300vw - 100vh) / 2 - 53.88vw) * -1),
+            13.34vw calc(((300vw - 100vh) / 2 - 53.88vw) * -1), 13.34vw calc(((300vw - 100vh) / 2 - 53.88vw) * -1),
+            10.64vw calc(((300vw - 100vh) / 2 - 17.19vw) * -1), 10.64vw calc(((300vw - 100vh) / 2 - 17.19vw) * -1),
+            10.64vw calc(((300vw - 100vh) / 2 - 17.19vw) * -1), -49vw calc(((300vw - 100vh) / 2 - 41.1vw) * -1),
+            -49vw calc(((300vw - 100vh) / 2 - 41.1vw) * -1), -49vw calc(((300vw - 100vh) / 2 - 41.1vw) * -1),
+            -100vw calc(((300vw - 100vh) / 2 - 78vw) * -1), -100vw calc(((300vw - 100vh) / 2 - 78vw) * -1),
+            -100vw calc(((300vw - 100vh) / 2 - 78vw) * -1);
+
+        background-attachment: fixed;
+
+        background-repeat: no-repeat;
+
+        &__header {
+            font-size: 2rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        &__body {
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        &__footer {
+            font-size: 2rem;
+            text-align: center;
+        }
+    }
+
+    &__section {
+        background-color: #fff;
+        padding: 15px 10px 25px 10px;
+        border-radius: 5px;
+        margin-bottom: 15px;
+
+        &__header {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &__title {
+            font-size: 1.8rem;
+        }
+
+        &__actions {
+            display: flex;
+        }
+
+        &__body {
+            margin-top: 15px;
+            font-size: 1.6rem;
+        }
+    }
+}

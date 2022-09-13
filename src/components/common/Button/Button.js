@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import './button.scss';
 
-const Button = ({ children, variant = 'text', size = 'full', className, ...passProps }) => {
+const Button = ({ children, onClick, variant = 'text', size = 'full', className, ...passProps }) => {
     // const classes = cx('lt-button', `lt-button--${variant}`, `lt-button--${size}`, {
     //     [className]: className,
     // });
@@ -14,12 +14,12 @@ const Button = ({ children, variant = 'text', size = 'full', className, ...passP
     //     </button>
     // );
 
-    const timeoutId = useRef(null)
+    const timeoutId = useRef(null);
 
     const [animate, setAnimate] = useState(false);
 
     const classes = cx('bubbly-button', `lt-button--${variant}`, `lt-button--${size}`, {
-        'animate': animate,
+        animate: animate,
         [className]: className,
     });
 
@@ -32,27 +32,20 @@ const Button = ({ children, variant = 'text', size = 'full', className, ...passP
         }
 
         timeoutId.current = setTimeout(() => {
-            setAnimate(true)
-        }, 250)
-    }
+            setAnimate(true);
+            onClick();
+        }, 250);
+    };
 
     useEffect(() => {
-        let timerId = null
+        let timerId = null;
         if (animate) {
             timerId = setTimeout(() => {
-                setAnimate(false)
-            }, 700)
+                setAnimate(false);
+            }, 700);
         }
-        return () => clearTimeout(timerId)
-    }, [animate])
-
-    useEffect(() => {
-        console.log('mounted')
-
-        return () => {
-            console.log('unmount')
-        }
-    }, [])
+        return () => clearTimeout(timerId);
+    }, [animate]);
 
     return (
         <button className={classes} {...passProps} onClick={handleClick}>

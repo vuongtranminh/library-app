@@ -18,8 +18,7 @@ import { useWhyDidYouUpdate } from '~/hooks';
 import { HALF_VOLUME, MAX_VOLUME, MIN_VOLUME, VIDEO_VOLUME } from './videoType';
 import { formatDuration, takeDecimalNumber } from '~/helpers';
 
-const Controls = ({ videoContainerRef, videoRef, autoPlay }) => {
-    const [isPlay, setIsPlay] = useState(autoPlay);
+const Controls = ({ videoContainerRef, videoRef, isPlay, onTogglePlay, onPlay }) => {
     const [volumeLevel, setVolumeLevel] = useState(VIDEO_VOLUME.high);
     const [volume, setVolume] = useState(50);
     const [volumeBeforeMuted, setVolumeBeforeMuted] = useState(50);
@@ -27,19 +26,11 @@ const Controls = ({ videoContainerRef, videoRef, autoPlay }) => {
     const [process, setProcess] = useState(0);
     const [totalTime, setTotalTime] = useState('00:00');
     const [currentTime, setCurrentTime] = useState('00:00');
+    const [isFullScreen, setIsFullScreen] = useState(false)
 
     const handleTogglePlay = () => {
-        isPlay ? handlePause() : handlePlay();
-        setIsPlay(!isPlay);
-    };
-
-    const handlePlay = () => {
-        videoRef.current.play();
-    };
-
-    const handlePause = () => {
-        videoRef.current.pause();
-    };
+        onTogglePlay()
+    }
 
     const handleToggleMuted = () => {
         if (videoRef.current.muted) {
@@ -63,7 +54,7 @@ const Controls = ({ videoContainerRef, videoRef, autoPlay }) => {
     }, []);
 
     const initVideo = () => {
-        handlePlay();
+        onPlay()
         videoRef.current.volume = volume / 100;
         const duration = videoRef.current.duration;
         setDuration(duration);
@@ -141,6 +132,16 @@ const Controls = ({ videoContainerRef, videoRef, autoPlay }) => {
         setProcess(value);
     };
 
+    const handleToggleFullScreen = () => {
+        if (isFullScreen) {
+            document.exitFullscreen();
+            setIsFullScreen(false)
+        } else {
+            videoContainerRef.current.requestFullscreen();
+            setIsFullScreen(true)
+        }
+    }
+
     return (
         <div className="lt-video__controls">
             <div className="lt-video__thumbnail-img"></div>
@@ -194,7 +195,7 @@ const Controls = ({ videoContainerRef, videoRef, autoPlay }) => {
                         </div>
                     </Tooltip>
                     <Tooltip tooltip="Toàn màn hình" flow="up">
-                        <div className="lt-video__button lt-video__button--screen-icon">
+                        <div className="lt-video__button lt-video__button--screen-icon" onClick={handleToggleFullScreen}>
                             <FullscreenIcon />
                         </div>
                     </Tooltip>
