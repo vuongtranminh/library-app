@@ -13,10 +13,9 @@
     position: relative;
     display: flex;
     justify-content: center;
-    background-color: aquamarine;
+    background-color: black;
 
     &:hover &__controls,
-    &:focus-within &__controls,
     &--pause &__controls {
         opacity: 1;
     }
@@ -33,7 +32,7 @@
         right: 0;
         color: white;
         z-index: 100;
-        opacity: 0;
+        opacity: 1; //
         transition: opacity 150ms ease-in-out;
 
         &::before {
@@ -52,6 +51,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        padding: 0 1%;
     }
 
     &__buttons {
@@ -62,6 +62,11 @@
 
     &__button {
         cursor: pointer;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         &:hover {
             animation-name: pop;
@@ -77,78 +82,24 @@
         align-items: center;
 
         &__range {
-            width: 100px;
+            width: 0px;
+            overflow: hidden;
+            transition: width 0.2s cubic-bezier(0.4, 0, 1, 1);
+        }
+
+        &:hover &__range {
+            width: 60px;
+            overflow: visible;
         }
     }
 
     &__duration {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        padding: 0 5px;
     }
 
-    //
-
-    // &__process {
-    //     height: 7px;
-    //     margin-inline: 0.5rem;
-    //     cursor: pointer;
-    //     display: flex;
-    //     align-items: center;
-    // }
-
-    // &__timeline {
-    //     background-color: rgba(100, 100, 100, 0.5);
-    //     height: 3px;
-    //     width: 100%;
-    //     position: relative;
-
-    //     &::before {
-    //         content: '';
-    //         position: absolute;
-    //         left: 0;
-    //         top: 0;
-    //         bottom: 0;
-    //         right: calc(100% - var(--preview-position) * 100%);
-    //         background-color: rgb(150, 150, 150);
-    //         display: none;
-    //     }
-
-    //     &::after {
-    //         content: '';
-    //         position: absolute;
-    //         left: 0;
-    //         top: 0;
-    //         bottom: 0;
-    //         right: calc(100% - var(--progress-position) * 100%);
-    //         background-color: red;
-    //     }
-    // }
-
-    // &__thumb-indicator {
-    //     --scale: 0;
-    //     position: absolute;
-    //     transform: translateX(-50%) scale(var(--scale));
-    //     height: 200%;
-    //     top: -50%;
-    //     left: calc(var(--progress-position) * 100%);
-    //     background-color: red;
-    //     border-radius: 50%;
-    //     transition: transform 150ms ease-in-out;
-    //     aspect-ratio: 1 / 1;
-    // }
-
-    // &__preview-img {
-    //     position: absolute;
-    //     height: 80px;
-    //     aspect-ratio: 16 / 9;
-    //     top: -1rem;
-    //     transform: translate(-50%, -100%);
-    //     left: calc(var(--preview-position) * 100%);
-    //     border-radius: 0.25rem;
-    //     border: 2px solid white;
-    //     display: none;
-    // }
+    &__process {
+        padding: 0 1%;
+    }
 }
 
 /* Pop */

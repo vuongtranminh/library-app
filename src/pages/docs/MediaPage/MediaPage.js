@@ -10,7 +10,7 @@ import { VIDEO_TYPE } from '~/components/common/Video/videoType';
 const MediaPage = (props) => {
     const sources = [
         {
-            src: videos.video,
+            src: videos.video4k,
             type: VIDEO_TYPE.mp4,
         },
     ];
